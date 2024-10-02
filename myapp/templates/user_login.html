@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCare - Login</title>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-image: url('https://i.pinimg.com/originals/1a/ee/5c/1aee5c344846f449350feae457ea350e.jpg'); /* Replace with your background image path */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the background image */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Stack navbar and content vertically */
+            height: 100vh; /* Full height */
+        }
+
+        .navbar {
+            background-color: rgba(0, 123, 255, 0.8); /* Slight transparency */
+            padding: 1rem;
+            text-align: center;
+            width: 100%; /* Full width for navbar */
+            position: fixed; /* Fix the navbar at the top */
+            top: 0; /* Align to the top */
+            z-index: 1000; /* Ensure it stays above other content */
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .breadcrumb {
+            padding: 15px;
+            background-color: #e9ecef;
+            margin: 80px 0 20px; /* Add margin to avoid overlapping with the navbar */
+            text-align: center;
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex: 1; /* Allow the container to take remaining space */
+        }
+
+        .login-card {
+            background-color: white;
+            border-radius: 15px; /* More pronounced rounding */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+            padding: 2rem;
+            width: 300px;
+            transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+        }
+
+        .login-card h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px; /* Space between title and form */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s; /* Smooth border transition */
+        }
+
+        .form-group input:focus {
+            border-color: #007bff; /* Highlight border on focus */
+            outline: none; /* Remove outline */
+        }
+
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s; /* Smooth background transition */
+        }
+
+        .btn-custom:hover {
+            background-color: #218838;
+            transform: translateY(-2px); /* Slight upward movement on hover */
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .register-message {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-card {
+                width: 90%; /* Responsive width on smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="{% url 'index' %}">MedCare</a>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </nav>
+    <!-- /NAVBAR -->
+
+
+    <!-- LOGIN FORM -->
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Login to MedCare</h2>
+            <form method="POST" action="{% url 'user_login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.username.label }}<br>
+                    <input type="text" name="username" placeholder="Username" value="{{ form.username.value|default:'' }}" required>
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}<br>
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-custom">Login</button>
+            </form>
+            <a href="{% url 'password_reset' %}" class="btn btn-link" style="display: block; text-align: center; margin: 10px 0;">Reset Password</a>
+            <p class="register-message">Don't have an account? <a href="{% url 'user_register' %}" class="text-primary">Register here</a></p>
+        </div>
+    </div>
+    <!-- /LOGIN FORM -->
+
+    <script>
+        // Example JavaScript for any future interactions
+        document.querySelector('.btn-custom').addEventListener('click', function() {
+            alert('Login button clicked!');
+        });
+    </script>
+</body>
+
+</html>
