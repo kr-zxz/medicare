@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Appointment</title>
+</head>
+<body>
+    <h1>Appointment Details</h1>
+    <p>User: {{ appointment.user.username }}</p>
+    <p>Doctor: {{ appointment.doctor.name }}</p>
+    <p>Appointment Time: {{ appointment.appointment_time }}</p>
+    <p>Status: {{ appointment.status }}</p>
+
+    <a href="{% url 'admin_appointment_list' %}">Back to Appointment List</a>
+</body>
+</html>

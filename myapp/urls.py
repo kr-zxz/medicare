@@ -87,17 +87,25 @@ urlpatterns = [
     
 
    
-        path('visualizations/', visualizations, name='visualizations'),
+    path('visualizations/', visualizations, name='visualizations'),
 
      
+        # Admin URLs for doctors
+    path('add_doctor', views.add_doctor, name='add_doctor'),
+    path('admin/doctors/update/<int:doctor_id>/', views.update_doctor, name='update_doctor'),
+    
+    # Admin URLs for doctor availability
+    path('admin/doctors/<int:doctor_id>/add_availability/', views.add_doctor_availability, name='add_doctor_availability'),
+    path('admin/doctors/<int:doctor_id>/add_availability/', views.add_doctor_availability, name='add_doctor_availability'),
+    path('admin/availability/update/<int:availability_id>/', views.update_doctor_availability, name='update_doctor_availability'),
+]
 
 
      
-
     
      
 
-]
+
 
    
     

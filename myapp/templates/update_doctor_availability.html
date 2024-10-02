@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Doctor Availability</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- Assuming a CSS file for styling -->
+</head>
+<body>
+    <div class="container">
+        <h1>Update Availability for Dr. {{ availability.doctor.name }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Update Availability</button>
+        </form>
+        <a href="{% url 'doctor_availability' availability.doctor.id %}">Back to Availability List</a>
+    </div>
+</body>
+</html>

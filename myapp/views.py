@@ -1178,6 +1178,13 @@ def approve_appointment(request, appointment_id):
     }
     return render(request, 'approve_appointment.html', context)
 
+@staff_member_required
+def view_appointment(request, appointment_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+    context = {
+        'appointment': appointment
+    }
+    return render(request, 'view_appointment.html', context)
 
 #visualisation
 
@@ -1621,3 +1628,63 @@ def visualizations(request):
         'chart3': chart3,
     }
     return render(request, 'visualizations1.html', context)
+
+
+#admin add doctor
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Doctor, DoctorAvailability
+from .forms import DoctorForm, DoctorAvailabilityForm
+@login_required
+def add_doctor(request):
+    if request.method == 'POST':
+        form = DoctorForm(request.POST)
+        if form.is_valid():
+            doctor = form.save()  # Save the doctor and get the instance
+            return redirect('add_doctor_availability', doctor_id=doctor.id)  # Redirect to availability page
+    else:
+        form = DoctorForm()
+    
+    return render(request, 'add_doctor.html', {'form': form})
+
+
+
+@login_required
+def update_doctor(request, doctor_id):
+    doctor = get_object_or_404(Doctor, id=doctor_id)
+    if request.method == 'POST':
+        form = DoctorForm(request.POST, instance=doctor)
+        if form.is_valid():
+            form.save()
+            return redirect('doctor_list')
+    else:
+        form = DoctorForm(instance=doctor)
+    return render(request, 'admin/update_doctor.html', {'form': form})
+
+@login_required
+def add_doctor_availability(request, doctor_id):
+    doctor = get_object_or_404(Doctor, id=doctor_id)
+    if request.method == 'POST':
+        form = DoctorAvailabilityForm(request.POST)
+        if form.is_valid():
+            availability = form.save(commit=False)
+            availability.doctor = doctor
+            availability.save()
+            return redirect('adminpage')  # Redirect to Admin Home page
+    else:
+        form = DoctorAvailabilityForm()
+    return render(request, 'add_doctor_availability.html', {'form': form, 'doctor': doctor})
+
+
+@login_required
+def update_doctor_availability(request, availability_id):
+    availability = get_object_or_404(DoctorAvailability, id=availability_id)
+    if request.method == 'POST':
+        form = DoctorAvailabilityForm(request.POST, instance=availability)
+        if form.is_valid():
+            form.save()
+            return redirect('doctor_availability', doctor_id=availability.doctor.id)
+    else:
+        form = DoctorAvailabilityForm(instance=availability)
+    return render(request, 'admin/update_doctor_availability.html', {'form': form, 'availability': availability})

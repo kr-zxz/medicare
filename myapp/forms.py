@@ -100,4 +100,19 @@ class OutcomeForm(forms.Form):
     gender = forms.ChoiceField(label='Gender', choices=[('M', 'Male'), ('F', 'Female')])
     symptom_severity = forms.IntegerField(label='Symptom Severity', min_value=1, max_value=10)
 
+#doctors
+from django import forms
+from .models import Doctor, DoctorAvailability
 
+class DoctorForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ['name', 'specialization', 'description', 'video_call_link']
+
+from django import forms
+from .models import DoctorAvailability
+
+class DoctorAvailabilityForm(forms.ModelForm):
+    class Meta:
+        model = DoctorAvailability
+        fields = ['date', 'start_time', 'end_time']  # Include only the fields you want to allow for availability

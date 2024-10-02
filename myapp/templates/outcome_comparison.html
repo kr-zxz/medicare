@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outcome Comparison</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f8ff;
             color: #333;
             margin: 0;
             padding: 0;
@@ -16,45 +18,41 @@
 
         h1, h2 {
             text-align: center;
-            color: #4CAF50;
+            color: #007bff;
+            margin-top: 20px;
         }
 
-        form {
-            width: 50%;
-            margin: 20px auto;
+        .form-container {
+            max-width: 600px;
+            margin: 30px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        form:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .form-group {
+            margin-bottom: 15px;
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #007bff;
             color: white;
-            cursor: pointer;
             border: none;
+            padding: 10px 15px;
             font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
 
         #chart {
-            width: 70%;
+            width: 80%;
             margin: 40px auto;
             padding: 20px;
             background-color: #fff;
@@ -63,14 +61,33 @@
         }
     </style>
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://img.freepik.com/premium-vector/green-white-logo-with-red-cross-red-cross_1205884-4671.jpg?size=626&ext=jpg&ga=GA1.1.245536261.1713429473&semt=ais_hybrid" alt="Medical Logo" style="width: 50px; height: 50px;"> MediCare
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                <
+            </ul>
+        </div>
+    </nav>
+
     <h1>Outcome Comparison Chart</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Generate Comparison</button>
-    </form>
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Generate Comparison</button>
+        </form>
+    </div>
 
     <div id="chart">
         {% if comparison_chart %}
@@ -81,9 +98,14 @@
 
     <script>
         const form = document.querySelector('form');
-        form.addEventListener('submit', function() {
+        form.addEventListener('submit', function () {
             alert('Your comparison chart is being generated. Please wait.');
         });
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -269,11 +269,10 @@
     <nav class="navbar">
         <div class="navbar-logo">
             <img src="https://img.freepik.com/premium-vector/health-care-medical-logo-vector-design_990473-2567.jpg?w=740" alt="MedCare Logo">
-            <h2 style="color: white;">MedCare</h2>
+            <h2 style="color: white;">MediCare</h2>
         </div>
         <ul>
             <li><a href="{% url 'welcome' %}">Home</a></li>
-            <li><a href="#">About</a></li>
             <li><a href="{% url 'index' %}">Our Products</a></li>
             <li><a href="{% url 'doctor_list' %}">Consulting</a></li>
             <li><a href="{% url 'medical_advisor' %}">Dashboard</a></li>
@@ -297,13 +296,16 @@
 <!-- Hero Section -->
 <section style="background-image: url('https://static.vecteezy.com/system/resources/thumbnails/035/866/755/small_2x/ai-generated-banner-for-pharmacy-and-medicine-multicolored-pills-and-capsules-floating-over-blurred-background-with-empty-space-for-text-motion-blur-medical-and-addiction-concept-photo.jpg'); background-size: cover; background-position: center; padding: 100px 60px; text-align: center; color: white; border-bottom: 5px solid #007bff; position: relative;">
     <div style="max-width: 600px; background-color: rgba(228, 187, 187, 0.8); padding: 40px; border-radius: 10px; margin: 0 auto;">
-        <h1 style="font-size: 48px; margin-bottom: 20px; color: #08090a; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">Welcome to MedCare</h1>
+        <h1 style="font-size: 48px; margin-bottom: 20px; color: #08090a; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">Welcome to MediCare</h1>
         <p style="font-size: 20px; margin-bottom: 30px; color: #000; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);">Expert medical consultations and quality products, all in one place!</p>
-        <button style="background-color: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 25px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; display: inline-block;" 
-            onmouseover="this.style.backgroundColor='#08090a'; this.style.transform='scale(1.05)';" 
-            onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='scale(1)';">
-            Get Started
-        </button>
+        <a href="{% url 'index' %}" style="text-decoration: none;">
+            <button style="background-color: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 25px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; display: inline-block;" 
+                onmouseover="this.style.backgroundColor='#08090a'; this.style.transform='scale(1.05)';" 
+                onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='scale(1)';">
+                Get Started
+            </button>
+        </a>
+        
     </div>
 </section>
 
